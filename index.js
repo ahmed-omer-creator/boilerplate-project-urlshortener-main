@@ -21,6 +21,9 @@ let counter = 1;
 // Your first API endpoint
 app.post('/api/shorturl', function(req, res) {
 let original_url = req.body.url
+if (!/^https?:\/\//.test(original_url)) {
+  return res.json({ error: "invalid url" });
+}
 
 let hostname;
 try {
