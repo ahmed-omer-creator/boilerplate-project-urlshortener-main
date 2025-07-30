@@ -29,7 +29,7 @@ try {
   return res.json({error:"invalid url"})
 }
 
-dns.lookup(hostname,(err,addres) => {
+dns.lookup(hostname,(err,address) => {
   if (err) {
     return res.json({error:"invalid url"})
   }
@@ -49,7 +49,7 @@ app.get("/api/shorturl/:id", (req,res) => {
   if (!entery) {
     return res.status(404).json({error:"No short URL found for given input"})
   }
-  
+
   res.redirect(entery.original_url)
 })
 
