@@ -53,7 +53,11 @@ app.get("/api/shorturl/:id", (req,res) => {
     return res.status(404).json({error:"No short URL found for given input"})
   }
 
-  res.redirect(entery.original_url)
+try {
+  return res.redirect(302, entery.original_url);
+} catch (e) {
+  return res.status(400).json({ error: "Redirect failed" });
+}
 })
 
 app.listen(port, function() {
